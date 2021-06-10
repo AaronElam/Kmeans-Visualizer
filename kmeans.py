@@ -4,6 +4,10 @@ import math
 import random
 import sys
 
+import dash
+import pandas as pd
+import plotly.express as px
+
 
 def calculate_distance(p1, p2):
     # sqrt[(x2-x1)^2 + (y2-y1)^2]
@@ -67,6 +71,12 @@ def initiate_centroids(points, k):
         centroids.append(newCentroid)
     return centroids
 
+
+def plot_clusters(xcoords, ycoords):
+    fig = px.scatter(x=xcoords, y=ycoords)
+    fig.show()
+
+
 def main():
     # Arbitrary number of iterations
     # If I wanted to improve time, I would find when my centroids
@@ -115,6 +125,14 @@ def main():
     # print("centroids:")
     # print(centroids)
     #                #
+
+    xcoords = []
+    ycoords = []
+    for i in range(len(points)):
+        xcoords.append(points[i][0])
+        ycoords.append(points[i][1])
+    plot_clusters(xcoords, ycoords)
+    # for i in range(len(clusters[]))
 
     # Output to file
     o = open("output.txt", "w")
